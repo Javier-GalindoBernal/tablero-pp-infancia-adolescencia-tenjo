@@ -3,11 +3,11 @@
 'use strict';
 
 /* ======================= DATOS ======================= */
-const C={verde:'#055B2A',verde2:'#0B7A3B',amarillo:'#E8BE07',rojo:'#E42628',tinta:'#15201A',gris:'#5B6670',claro:'#D5E2D9'};
+const C={verde:'#055B2A',verde2:'#0B7A3B',amarillo:'#E8BE07',azul:'#1F6FB2',tinta:'#15201A',gris:'#5B6670',claro:'#D5E2D9'};
 const EJES=[
   {id:1,nombre:'Primera infancia',edad:'0 a 5 años',icono:'fa-baby',c:C.verde,ct:'#055B2A',cbg:'#E3F0E7',lineas:7,acciones:24,peso:23.53},
   {id:2,nombre:'Infancia',edad:'6 a 11 años',icono:'fa-child-reaching',c:C.amarillo,ct:'#8F7200',cbg:'#FBF1C7',lineas:8,acciones:37,peso:36.27},
-  {id:3,nombre:'Adolescencia',edad:'12 a 17 años',icono:'fa-user-group',c:C.rojo,ct:'#C41E20',cbg:'#FCE2E2',lineas:9,acciones:41,peso:40.20}
+  {id:3,nombre:'Adolescencia',edad:'12 a 17 años',icono:'fa-user-group',c:C.azul,ct:'#17588F',cbg:'#E1EDF8',lineas:9,acciones:41,peso:40.20}
 ];
 const TOTAL_ACC=102;
 const LN={
@@ -51,7 +51,7 @@ const G_APORTE=ALL_ACC.reduce((s,x)=>s+x.c,0)/TOTAL_ACC;
 const estado=c=>c>=100?'Cumplida':'En avance';
 const ESTADOS=[['Cumplida',C.verde,'fa-circle-check'],['En avance',C.amarillo,'fa-circle-half-stroke']];
 
-const POB={hab:28000,share:25,grupos:[{eje:1,g:'Primera infancia',e:'0 a 5 años',w:2200/7000,b:1500,c:C.verde},{eje:2,g:'Infancia',e:'6 a 11 años',w:2400/7000,b:1900,c:C.amarillo},{eje:3,g:'Adolescencia',e:'12 a 17 años',w:2400/7000,b:1300,c:C.rojo}],cuid:1600};
+const POB={hab:28000,share:25,grupos:[{eje:1,g:'Primera infancia',e:'0 a 5 años',w:2200/7000,b:1500,c:C.verde},{eje:2,g:'Infancia',e:'6 a 11 años',w:2400/7000,b:1900,c:C.amarillo},{eje:3,g:'Adolescencia',e:'12 a 17 años',w:2400/7000,b:1300,c:C.azul}],cuid:1600};
 const AT={nna:[['Día de la Niñez',4000,1],['Escuelas artísticas (IMCTT)',3600,2],['Escuelas deportivas (Inderten)',2000,2],['Ludoteca municipal',1286,1],['Festivales deportivos',1251,2],['Prevención del abuso sexual',1101,1],['Matrogimnasia',410,1],['CDI Tenjanito',79,1],['Bilingüismo',66,2],['Hogares comunitarios',52,1]],
  fam:[['Cuidadores en la Ludoteca',1309,1],['Madres gestantes y lactantes',416,1],['Semana de la Lactancia',124,1],['Grupo de orientación en lactancia',120,1],['Padres en encuentros de crianza',100,1],['Familias víctimas con apoyo nutricional',32,1],['Familias con kit para el bebé',28,1]]};
 const CATS=[['Atención integral','fa-house-chimney-user'],['Salud y nutrición','fa-heart-pulse'],['Formación y talleres','fa-chalkboard-user'],['Protección de derechos','fa-shield-heart'],['Cultura y deporte','fa-futbol'],['Infraestructura','fa-building']];
@@ -282,12 +282,12 @@ function vLogros(v){
   const base=LOGROS.filter(x=>!S.eje||x[0]===S.eje);
   const cc=chart($('#catChart'),{tooltip:Object.assign({},TT),grid:{left:6,right:40,top:6,bottom:6,containLabel:true},xAxis:{type:'value',show:false},
     yAxis:{type:'category',inverse:true,data:CATS.map(c=>c[0]),axisTick:{show:false},axisLine:{show:false},axisLabel:{color:C.tinta,fontWeight:600}},
-    series:[{type:'bar',barMaxWidth:22,label:{show:true,position:'right',fontWeight:800},data:CATS.map((c,i)=>({value:base.filter(x=>x[2]===c[0]).length,itemStyle:{borderRadius:8,color:[C.verde,C.rojo,C.amarillo,C.verde2,'#B23A1E','#7A8F00'][i]}}))}]});
+    series:[{type:'bar',barMaxWidth:22,label:{show:true,position:'right',fontWeight:800},data:CATS.map((c,i)=>({value:base.filter(x=>x[2]===c[0]).length,itemStyle:{borderRadius:8,color:[C.verde,C.azul,C.amarillo,C.verde2,'#0F4C81','#7A8F00'][i]}}))}]});
   cc.on('click',p=>{S.logCat=p.name;render()});
   let ci=AT.nna.filter(x=>!S.eje||x[2]===S.eje);if(!ci.length)ci=AT.nna;ci=ci.slice(0,7);
   chart($('#cifras'),{tooltip:Object.assign({valueFormatter:v=>fmt(v)+' atendidos'},TT),series:[{type:'treemap',roam:false,nodeClick:false,breadcrumb:{show:false},width:'100%',height:'100%',
     label:{fontWeight:700,fontSize:13,formatter:p=>`${p.name}\n${fmt(p.value)}`},itemStyle:{borderColor:'#fff',borderWidth:3,gapWidth:3,borderRadius:8},
-    data:ci.map((x,i)=>({name:x[0],value:x[1],itemStyle:{color:[C.verde,C.verde2,'#2E8B57',C.amarillo,'#C9A100',C.rojo,'#B71C1C'][i%7]}}))}]});
+    data:ci.map((x,i)=>({name:x[0],value:x[1],itemStyle:{color:[C.verde,C.verde2,'#2E8B57',C.amarillo,'#C9A100',C.azul,'#0F4C81'][i%7]}}))}]});
 }
 
 /* ======================= VISTA: POBLACIÓN ======================= */
@@ -336,7 +336,7 @@ function vPoblacion(v){
     at.setOption({tooltip:Object.assign({valueFormatter:v=>fmt(v)+' atendidos'},TT),grid:{left:6,right:50,top:6,bottom:6,containLabel:true},xAxis:{type:'value',show:false},
       yAxis:{type:'category',inverse:true,data:d.map(x=>x[0]),axisTick:{show:false},axisLine:{show:false},axisLabel:{color:C.tinta,fontWeight:600}},
       series:[{type:'bar',barMaxWidth:20,label:{show:true,position:'right',fontWeight:800,formatter:p=>fmt(p.value)},
-        data:d.map(x=>({value:x[1],itemStyle:{borderRadius:8,color:S.at==='nna'?C.verde:C.rojo}}))}]},true)}
+        data:d.map(x=>({value:x[1],itemStyle:{borderRadius:8,color:S.at==='nna'?C.verde:C.azul}}))}]},true)}
   document.querySelectorAll('#segAt button').forEach(b=>b.onclick=()=>{S.at=b.dataset.v;pintarAt()});pintarAt();
 }
 
@@ -388,8 +388,7 @@ function vDependencias(v){
     <div class="card"><div id="depDet"></div></div></div>
     <div class="row c12">
       <div class="card"><div class="ch"><div><h3>Plan de Desarrollo Territorial</h3><p>Último reporte consolidado (vigencia 2025)</p></div></div>
-        <div class="tri"><div style="background:var(--verde)"><span class="n">34</span><small>metas articuladas con la política</small></div><div style="background:var(--rojo)"><span class="n">19</span><small>metas al 100 % de su meta anual</small></div><div style="background:var(--amarillo);color:var(--tinta)"><span class="n" style="font-size:18px;white-space:nowrap">$3.007 M</span><small>recursos asociados</small></div></div>
-        <div class="chart sm" id="pdt"></div></div>
+        <div class="tri"><div style="background:var(--verde)"><span class="n">34</span><small>metas articuladas con la política</small></div><div style="background:var(--azul)"><span class="n">19</span><small>metas al 100 % de su meta anual</small></div><div style="background:var(--amarillo);color:var(--tinta)"><span class="n" style="font-size:18px;white-space:nowrap">$3.007 M</span><small>recursos asociados</small></div></div></div>
       <div class="card"><div class="ch"><div><h3>Metas cumplidas destacadas</h3><p>Metas de producto del PDT que respaldan la política</p></div></div><div class="row c2" style="margin:0;gap:0 24px">${METAS.map(m=>`<div class="meta"><span class="cod">Meta ${m[0]}</span><div><b>${m[1]}</b><span>${m[2]}</span></div></div>`).join('')}</div></div>
     </div>`;
   const dc=chart($('#dep'),{});
@@ -397,7 +396,7 @@ function vDependencias(v){
     grid:{left:6,right:40,top:6,bottom:6,containLabel:true},xAxis:{type:'value',show:false},
     yAxis:{type:'category',inverse:true,data:deps.map(d=>d.d),axisTick:{show:false},axisLine:{show:false},axisLabel:{color:C.tinta,fontWeight:600}},
     series:[{type:'bar',barMaxWidth:22,label:{show:true,position:'right',fontWeight:800},
-      data:deps.map((d,i)=>({value:d.n,itemStyle:{borderRadius:8,color:[C.verde,C.amarillo,C.rojo][i%3],opacity:d.d===S.dep?1:.45,borderColor:d.d===S.dep?C.tinta:'transparent',borderWidth:d.d===S.dep?2:0}}))}]},true)}
+      data:deps.map((d,i)=>({value:d.n,itemStyle:{borderRadius:8,color:[C.verde,C.amarillo,C.azul][i%3],opacity:d.d===S.dep?1:.45,borderColor:d.d===S.dep?C.tinta:'transparent',borderWidth:d.d===S.dep?2:0}}))}]},true)}
   pintarChart();
   dc.on('click',p=>{S.dep=deps[p.dataIndex].d;pintarChart();pintarDet()});
   function pintarDet(){const d=deps.find(x=>x.d===S.dep);if(!d)return;const xs=fa.filter(a=>a.r===d.d);
@@ -407,9 +406,6 @@ function vDependencias(v){
     contar($('#depDet'))}
   pintarDet();
   $('#depDet').onclick=ev=>{const a=ev.target.closest('[data-act]');if(a)modalAct(ACT[+a.dataset.act])};
-  chart($('#pdt'),{tooltip:Object.assign({formatter:p=>`<b>${p.name}</b><br>${p.value} metas`},TT),legend:{bottom:0,icon:'circle',itemWidth:9,textStyle:{color:C.gris}},
-    series:[{type:'pie',radius:['48%','78%'],center:['50%','44%'],itemStyle:{borderColor:'#fff',borderWidth:3,borderRadius:8},label:{show:true,position:'inside',formatter:'{c}',color:'#fff',fontWeight:800},
-      data:[{name:'Meta anual cumplida',value:19,itemStyle:{color:C.verde}},{name:'Avance parcial',value:10,itemStyle:{color:C.amarillo}},{name:'Programadas para el cuatrienio',value:5,itemStyle:{color:'#7FA48C'}}]}]});
 }
 
 /* ======================= EVENTOS ======================= */
