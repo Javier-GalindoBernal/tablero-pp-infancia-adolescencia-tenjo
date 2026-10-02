@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tablero PP Infancia y Adolescencia · Tenjo 2026</title>
+<meta name="description" content="Tablero de seguimiento a la Política Pública de Primera Infancia, Infancia y Adolescencia del municipio de Tenjo, vigencia 2026.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%23055B2A'/%3E%3Crect x='3' y='3' width='2' height='10' fill='%23E42628'/%3E%3Crect x='7' y='3' width='2' height='10' fill='%23E8BE07'/%3E%3Crect x='11' y='3' width='2' height='10' fill='%23ffffff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+<style>
+:root{
+  --verde:#055B2A; --verde-2:#0B7A3B; --verde-osc:#033D1C; --amarillo:#E8BE07; --amarillo-txt:#9A7B00; --rojo:#E42628;
+  --tinta:#1A1A1A; --gris:#5B6670; --borde:#DCE5DF; --tarjeta:#FFFFFF; --fondo:#F3F6F4; --suave:#EAF2EC;
+  --sombra:0 1px 2px rgba(5,91,42,.06),0 8px 24px rgba(5,91,42,.07);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--fondo);color:var(--tinta);font-family:'Source Sans 3',system-ui,sans-serif;font-size:16px;line-height:1.5}
+h1,h2,h3,.num{font-family:'Montserrat',system-ui,sans-serif}
+a{color:var(--verde)}
+.wrap{max-width:1280px;margin:0 auto;padding:0 24px}
+
+/* ---------- Encabezado ---------- */
+header.hero{position:relative;color:#fff;overflow:hidden;background:var(--verde-osc)}
+.hero::before{content:"";position:absolute;inset:0;background:url(assets/secretaria-planeacion.jpg) center/cover;filter:saturate(.9);opacity:.16}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(3,61,28,.97) 0%,rgba(5,91,42,.88) 55%,rgba(5,91,42,.55) 100%)}
+.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:auto 1fr auto;gap:32px;align-items:center;padding-top:28px;padding-bottom:28px}
+.logo-sec{width:300px;max-width:100%;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.35);display:block}
+.hero-txt .kicker{display:inline-flex;align-items:center;gap:10px;font:600 13px/1 'Montserrat';letter-spacing:.18em;text-transform:uppercase;color:#FDE58A}
+.bandera{display:inline-flex;width:30px;height:6px;border-radius:3px;overflow:hidden}
+.bandera i{flex:1}.bandera i:nth-child(1){background:var(--rojo)}.bandera i:nth-child(2){background:var(--amarillo)}.bandera i:nth-child(3){background:#3FB56A}
+.hero h1{margin:12px 0 8px;font-size:clamp(24px,3vw,38px);line-height:1.15;font-weight:800}
+.hero p{margin:0;color:#D7EBDD;font-size:17px}
+.escudo{width:110px;height:auto;filter:drop-shadow(0 6px 16px rgba(0,0,0,.35))}
+.franjas{position:absolute;right:-30px;top:-40px;z-index:1;display:flex;gap:14px;transform:rotate(45deg)}
+.franjas span{width:22px;height:150px;border-radius:12px}
+.franjas span:nth-child(1){background:var(--rojo)}.franjas span:nth-child(2){background:var(--amarillo)}.franjas span:nth-child(3){background:#2FA45C}
+
+/* ---------- Navegación ---------- */
+nav.menu{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--borde)}
+nav.menu .wrap{display:flex;gap:6px;align-items:center;overflow-x:auto;padding-top:10px;padding-bottom:10px}
+nav.menu a{white-space:nowrap;text-decoration:none;color:var(--gris);font:600 14px 'Montserrat';padding:8px 14px;border-radius:999px;transition:.2s}
+nav.menu a:hover,nav.menu a.activo{background:var(--suave);color:var(--verde)}
+.corte{margin-left:auto;white-space:nowrap;font-size:14px;color:var(--gris)}
+
+/* ---------- Secciones ---------- */
+section{padding:44px 0 8px}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+.sec-head h2{margin:0;font-size:26px;color:var(--verde);font-weight:800}
+.sec-head h2::after{content:"";display:block;width:56px;height:5px;border-radius:3px;background:var(--amarillo);margin-top:10px}
+.sec-head p{margin:6px 0 0;color:var(--gris);max-width:760px}
+.card{background:var(--tarjeta);border:1px solid var(--borde);border-radius:16px;box-shadow:var(--sombra);padding:22px}
+.card h3{margin:0 0 4px;font-size:17px;color:var(--verde);font-weight:700}
+.card .sub{margin:0 0 14px;color:var(--gris);font-size:14px}
+.grid{display:grid;gap:20px}
+.g-5{grid-template-columns:repeat(5,1fr)}.g-4{grid-template-columns:repeat(4,1fr)}.g-3{grid-template-columns:repeat(3,1fr)}.g-2{grid-template-columns:repeat(2,1fr)}
+.g-73{grid-template-columns:1.6fr 1fr}
+
+/* KPI */
+.kpi{position:relative;overflow:hidden;padding:22px 22px 20px}
+.kpi .ico{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:19px;margin-bottom:14px;background:var(--suave);color:var(--verde)}
+.kpi .num{font-size:34px;font-weight:800;color:var(--verde);line-height:1}
+.kpi .lbl{margin-top:8px;color:var(--gris);font-size:14.5px;line-height:1.35}
+.kpi.destacado{background:linear-gradient(140deg,var(--verde) 0%,var(--verde-2) 100%);border-color:transparent;color:#fff}
+.kpi.destacado .num{color:#fff}.kpi.destacado .lbl{color:#D7EBDD}.kpi.destacado .ico{background:rgba(255,255,255,.15);color:#FDE58A}
+.kpi.y .ico{background:#FBF3CF;color:var(--amarillo-txt)}.kpi.r .ico{background:#FCE3E3;color:var(--rojo)}
+
+/* Filtros */
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:1px solid var(--borde);background:#fff;color:var(--tinta);font:600 14px 'Montserrat';padding:8px 14px;border-radius:999px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:.2s}
+.chip .pt{width:10px;height:10px;border-radius:50%}
+.chip:hover{border-color:var(--verde)}
+.chip.on{background:var(--verde);border-color:var(--verde);color:#fff}
+.seg{display:inline-flex;background:var(--suave);border-radius:999px;padding:4px}
+.seg button{border:0;background:transparent;font:600 13px 'Montserrat';color:var(--gris);padding:7px 14px;border-radius:999px;cursor:pointer}
+.seg button.on{background:#fff;color:var(--verde);box-shadow:0 1px 4px rgba(0,0,0,.08)}
+
+/* Ejes */
+.eje{cursor:pointer;transition:transform .2s,box-shadow .2s;border-top:6px solid var(--c)}
+.eje:hover{transform:translateY(-3px)}
+.eje.sel{outline:3px solid var(--c);outline-offset:2px}
+.eje .top{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.eje .top i{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--cbg);color:var(--c);font-size:18px}
+.eje .top b{font:800 19px 'Montserrat';color:var(--verde);display:block}
+.eje .top small{color:var(--gris)}
+.barra{height:12px;background:#EEF2EF;border-radius:6px;overflow:hidden;margin:10px 0 6px}
+.barra span{display:block;height:100%;border-radius:6px;background:var(--c);width:0;transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
+.eje .fila{display:flex;justify-content:space-between;font-size:14px;color:var(--gris)}
+.eje .fila b{color:var(--tinta)}
+.eje .pct{font:800 30px 'Montserrat';color:var(--ct)}
+
+/* Medidor */
+.gauge-box{position:relative;height:230px}
+.gauge-centro{position:absolute;left:0;right:0;bottom:22px;text-align:center}
+.gauge-centro .num{font-size:44px;font-weight:800;color:var(--verde);line-height:1}
+.gauge-centro small{color:var(--gris)}
+.chart-box{position:relative;height:340px}
+.chart-box.alto{height:520px}
+
+/* Logros */
+.buscar{display:flex;align-items:center;gap:8px;border:1px solid var(--borde);background:#fff;border-radius:999px;padding:8px 14px;min-width:260px}
+.buscar input{border:0;outline:0;font:inherit;width:100%;background:transparent}
+.logro{display:flex;flex-direction:column;gap:10px;border-left:0;position:relative;transition:transform .2s}
+.logro:hover{transform:translateY(-3px)}
+.logro .tag{align-self:flex-start;font:700 11.5px 'Montserrat';letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:var(--cbg);color:var(--ct)}
+.logro .cifra{font:800 30px 'Montserrat';color:var(--ct);line-height:1}
+.logro .cifra small{font:600 14px 'Source Sans 3';color:var(--gris);margin-left:6px}
+.logro h4{margin:0;font:700 16px 'Montserrat';color:var(--tinta)}
+.logro p{margin:0;color:var(--gris);font-size:15px}
+.logro .linea{font-size:13px;color:var(--gris);border-top:1px dashed var(--borde);padding-top:8px;margin-top:auto}
+.vacio{grid-column:1/-1;text-align:center;color:var(--gris);padding:30px}
+
+/* Población */
+.anillo{display:flex;align-items:center;gap:18px}
+.anillo canvas{width:110px!important;height:110px!important}
+.anillo .num{font-size:28px;font-weight:800;color:var(--verde)}
+.anillo p{margin:2px 0 0;color:var(--gris);font-size:14.5px}
+.nota{font-size:13.5px;color:var(--gris);background:var(--suave);border-radius:12px;padding:12px 14px;margin-top:16px}
+.nota i{color:var(--verde);margin-right:6px}
+
+/* Metas */
+.meta{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--borde)}
+.meta:last-child{border-bottom:0}
+.meta .cod{flex:0 0 auto;font:800 14px 'Montserrat';color:#fff;background:var(--verde);border-radius:10px;padding:8px 10px}
+.meta b{display:block}
+.meta span{color:var(--gris);font-size:14.5px}
+.mini{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px}
+.mini div{border-radius:12px;padding:14px;color:#fff;text-align:center}
+.mini .num{font-size:26px;font-weight:800;display:block}
+.mini small{font-size:13px;line-height:1.3;display:block}
+
+footer{margin-top:48px;background:var(--verde-osc);color:#CFE3D6;padding:28px 0;font-size:14px}
+footer .wrap{display:flex;gap:24px;justify-content:space-between;flex-wrap:wrap;align-items:center}
+footer b{color:#fff}
+
+@media (max-width:1100px){.g-5{grid-template-columns:repeat(3,1fr)}.g-4{grid-template-columns:repeat(2,1fr)}.g-73{grid-template-columns:1fr}}
+@media (max-width:760px){
+  .wrap{padding:0 16px}
+  .hero .wrap{grid-template-columns:1fr;gap:18px}
+  .logo-sec{width:240px}
+  .escudo{display:none}
+  .g-5,.g-4,.g-3,.g-2{grid-template-columns:1fr}
+  .g-5{grid-template-columns:repeat(2,1fr)}
+  .corte{display:none}
+  .chart-box.alto{height:600px}
+  .mini{grid-template-columns:1fr}
+  .buscar{min-width:0;width:100%}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="franjas" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="wrap">
+    <img class="logo-sec" src="assets/secretaria-planeacion.jpg" alt="Secretaría de Planeación y Desarrollo Territorial de Tenjo">
+    <div class="hero-txt">
+      <span class="kicker"><span class="bandera"><i></i><i></i><i></i></span>Alcaldía de Tenjo · Tablero de seguimiento</span>
+      <h1>Política Pública de Primera Infancia, Infancia y Adolescencia</h1>
+      <p>Avance, logros y población beneficiada · Vigencia 2026</p>
+    </div>
+    <img class="escudo" src="assets/escudo-tenjo.png" alt="Escudo de Tenjo" onerror="this.remove()">
+  </div>
+</header>
+
+<nav class="menu" aria-label="Secciones">
+  <div class="wrap">
+    <a href="#resumen">Resumen</a>
+    <a href="#avance">Avance</a>
+    <a href="#logros">Logros</a>
+    <a href="#poblacion">Población</a>
+    <a href="#articulacion">Articulación</a>
+    <span class="corte"><i class="fa-regular fa-calendar"></i> Corte: octubre de 2026</span>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<!-- RESUMEN -->
+<section id="resumen">
+  <div class="sec-head reveal">
+    <div><h2>Resumen de la vigencia 2026</h2>
+    <p>En 2026 el municipio cumplió el 72,2 % del plan de acción de la política, con 49 acciones gestionadas en 14 líneas estratégicas.</p></div>
+  </div>
+  <div class="grid g-5">
+    <div class="card kpi destacado reveal"><div class="ico"><i class="fa-solid fa-chart-line"></i></div><div class="num" data-count="72.2" data-dec="1" data-suf=" %">0</div><div class="lbl">Cumplimiento del plan de acción 2026</div></div>
+    <div class="card kpi y reveal"><div class="ico"><i class="fa-solid fa-layer-group"></i></div><div class="num" data-count="34.7" data-dec="1" data-suf=" %">0</div><div class="lbl">Aporte de 2026 a la implementación total de la política</div></div>
+    <div class="card kpi reveal"><div class="ico"><i class="fa-solid fa-list-check"></i></div><div class="num" data-count="49" data-dec="0">0</div><div class="lbl">Acciones gestionadas en 14 líneas estratégicas</div></div>
+    <div class="card kpi r reveal"><div class="ico"><i class="fa-solid fa-children"></i></div><div class="num" data-count="4700" data-dec="0" data-pre="≈ ">0</div><div class="lbl">Niñas, niños y adolescentes beneficiados (67 %)</div></div>
+    <div class="card kpi reveal"><div class="ico"><i class="fa-solid fa-people-roof"></i></div><div class="num" data-count="6300" data-dec="0" data-pre="≈ ">0</div><div class="lbl">Personas vinculadas: 22,5 % de los habitantes</div></div>
+  </div>
+</section>
+
+<!-- AVANCE -->
+<section id="avance">
+  <div class="sec-head reveal">
+    <div><h2>Avance por eje y línea estratégica</h2>
+    <p>Selecciona un eje para ver el detalle de sus líneas estratégicas y sus logros.</p></div>
+    <div class="chips" id="filtroEje" role="group" aria-label="Filtrar por eje"></div>
+  </div>
+
+  <div class="grid g-3" id="ejes"></div>
+
+  <div class="grid g-73" style="margin-top:20px">
+    <div class="card reveal">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
+        <div><h3>Resultado por eje</h3><p class="sub" id="subEje">Cumplimiento del plan de acción 2026 (%)</p></div>
+        <div class="seg" id="segEje"><button class="on" data-v="cumpl">Cumplimiento</button><button data-v="aporte">Aporte a la política</button></div>
+      </div>
+      <div class="chart-box"><canvas id="chEjes" aria-label="Gráfico de resultado por eje"></canvas></div>
+    </div>
+    <div class="card reveal">
+      <h3>Cumplimiento del plan de acción</h3><p class="sub">Promedio de las 49 acciones gestionadas en 2026</p>
+      <div class="gauge-box"><canvas id="chGauge" aria-label="Medidor de cumplimiento"></canvas>
+        <div class="gauge-centro"><div class="num">72,2 %</div><small>del plan de acción 2026</small></div></div>
+      <div class="nota"><i class="fa-solid fa-circle-info"></i>La vigencia aporta <b>34,7 %</b> a la implementación total de la política, que comprende 102 acciones de largo plazo.</div>
+    </div>
+  </div>
+
+  <div class="card reveal" style="margin-top:20px">
+    <h3 id="tLineas">Cumplimiento por línea estratégica</h3><p class="sub">Líneas con gestión en 2026 · pasa el cursor sobre cada barra para ver el detalle</p>
+    <div class="chart-box alto" id="boxLineas"><canvas id="chLineas" aria-label="Gráfico de cumplimiento por línea estratégica"></canvas></div>
+  </div>
+</section>
+
+<!-- LOGROS -->
+<section id="logros">
+  <div class="sec-head reveal">
+    <div><h2>Logros obtenidos</h2><p>Resultados destacados reportados por las dependencias corresponsables en 2026.</p></div>
+    <label class="buscar"><i class="fa-solid fa-magnifying-glass" style="color:var(--gris)"></i><input id="q" type="search" placeholder="Buscar un logro (ej. lactancia, CDI, talleres)"></label>
+  </div>
+  <div class="grid g-4" id="gridLogros"></div>
+</section>
+
+<!-- POBLACIÓN -->
+<section id="poblacion">
+  <div class="sec-head reveal">
+    <div><h2>Población beneficiada</h2>
+    <p>Tenjo tiene cerca de 28.000 habitantes; la población de 0 a 17 años se estima en 7.000. La política llegó a dos de cada tres niñas, niños y adolescentes.</p></div>
+  </div>
+  <div class="grid g-3" id="anillos"></div>
+  <div class="grid g-2" style="margin-top:20px">
+    <div class="card reveal">
+      <h3>Población y beneficiarios por curso de vida</h3><p class="sub">Personas distintas, estimadas descontando la participación en varios programas</p>
+      <div class="chart-box"><canvas id="chPob" aria-label="Población y beneficiarios por curso de vida"></canvas></div>
+    </div>
+    <div class="card reveal">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
+        <div><h3>Atenciones por programa</h3><p class="sub" id="subAt">Niñas, niños y adolescentes atendidos</p></div>
+        <div class="seg" id="segAt"><button class="on" data-v="nna">NNA</button><button data-v="fam">Familias</button></div>
+      </div>
+      <div class="chart-box"><canvas id="chAt" aria-label="Atenciones por programa"></canvas></div>
+    </div>
+  </div>
+  <div class="nota reveal"><i class="fa-solid fa-calculator"></i>Estimación: 28.000 habitantes; población de 0 a 17 años ≈ 25 % (7.000). Los programas reportan cerca de 13.800 atenciones; un mismo niño participa en promedio en unas tres actividades, por lo que se estiman ≈ 4.700 beneficiarios distintos y ≈ 1.600 padres, madres y cuidadores.</div>
+</section>
+
+<!-- ARTICULACIÓN -->
+<section id="articulacion">
+  <div class="sec-head reveal">
+    <div><h2>Articulación institucional y Plan de Desarrollo</h2><p>Nueve dependencias y entidades reportan actividades, y 34 metas del Plan de Desarrollo Territorial respaldan la política.</p></div>
+  </div>
+  <div class="grid g-2">
+    <div class="card reveal">
+      <h3>Actividades reportadas por dependencia</h3><p class="sub">Matriz de seguimiento 2026</p>
+      <div class="chart-box"><canvas id="chDep" aria-label="Actividades por dependencia"></canvas></div>
+    </div>
+    <div class="card reveal">
+      <h3>Metas del Plan de Desarrollo</h3><p class="sub">Último reporte consolidado (vigencia 2025)</p>
+      <div class="mini">
+        <div style="background:var(--verde)"><span class="num">34</span><small>metas articuladas con la política</small></div>
+        <div style="background:var(--rojo)"><span class="num">19</span><small>metas al 100 % de su meta anual</small></div>
+        <div style="background:var(--amarillo);color:var(--tinta)"><span class="num">$3.007 M</span><small>recursos asociados a la política</small></div>
+      </div>
+      <div id="metas"></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><b>Alcaldía de Tenjo · Secretaría de Planeación y Desarrollo Territorial</b><br>Tablero de seguimiento a la Política Pública de Primera Infancia, Infancia y Adolescencia · Vigencia 2026</div>
+    <div>Fuente: matriz de seguimiento de la política y relación con el Plan de Desarrollo Territorial · Corte octubre 2026</div>
+  </div>
+</footer>
+
+<script>
+const C={verde:'#055B2A',amarillo:'#E8BE07',rojo:'#E42628',gris:'#5B6670',tinta:'#1A1A1A',claro:'#C9D8CE'};
+const fmt=(n,d=0)=>n.toLocaleString('es-CO',{minimumFractionDigits:d,maximumFractionDigits:d});
+
+const EJES=[
+ {id:1,nombre:'Primera infancia',edad:'0 a 5 años',icono:'fa-baby',c:C.verde,ct:'#055B2A',cbg:'#E3F0E7',lineas:7,acciones:24,peso:23.53,gest:24,cumpl:82.3,aporte:19.4},
+ {id:2,nombre:'Infancia',edad:'6 a 11 años',icono:'fa-child-reaching',c:C.amarillo,ct:'#9A7B00',cbg:'#FBF3CF',lineas:8,acciones:37,peso:36.27,gest:20,cumpl:53.0,aporte:10.4},
+ {id:3,nombre:'Adolescencia',edad:'12 a 17 años',icono:'fa-user-group',c:C.rojo,ct:'#C81E21',cbg:'#FCE3E3',lineas:9,acciones:41,peso:40.20,gest:5,cumpl:100,aporte:4.9}
+];
+const LINEAS=[
+ [1,'1.1','Pautas de crianza',85,'Encuentros de crianza en jardines sociales y red de protección'],
+ [1,'1.2','Salud',60,'Jornadas nacionales de vacunación (PAI)'],
+ [1,'1.3','Nutrición',97,'Sala de lactancia y 27 talleres con gestantes y lactantes'],
+ [1,'1.4','Entornos de desarrollo',89,'Ludoteca, CDI Tenjanito, hogares comunitarios y CDI La Punta'],
+ [1,'1.5','Identidad',97.5,'Registro desde el nacimiento y atención a familias víctimas'],
+ [1,'1.6','Participación y expresión',87.5,'Matrogimnasia y celebración del Día de la Niñez'],
+ [1,'1.7','Protección de derechos',78,'Prevención del abuso sexual infantil'],
+ [2,'2.1','Familia y cuidadores',75,'Talleres de convivencia y escuelas de padres'],
+ [2,'2.2','Salud',52.5,'Talleres de manejo emocional y PIC'],
+ [2,'2.4','Educación',30,'Programa de bilingüismo Kids 1 y 2'],
+ [2,'2.5','Identidad y diversidad',80,'Eventos contra el trabajo infantil y mesa JUME'],
+ [3,'3.1','Familia y cuidadores',100,'13 escuelas de padres y talleres para cuidadores'],
+ [3,'3.2','Salud y vida saludable',100,'Talleres de manejo emocional y convivencia'],
+ [3,'3.9','Autoprotección',100,'Prevención del consumo de sustancias psicoactivas']
+];
+const LOGROS=[
+ [1,'1.4 Entornos de desarrollo','1.286','niños','Ludoteca Luis Carlos Galán','Atención a 1.286 niños y 1.309 padres de familia, con obras de adecuación de espacios.'],
+ [1,'1.4 Entornos de desarrollo','80 %','de obra','CDI La Punta','La construcción del nuevo Centro de Desarrollo Infantil ampliará la atención en cerca de 100 cupos.'],
+ [1,'1.4 Entornos de desarrollo','131','niños','CDI Tenjanito y hogares comunitarios','79 niños en el CDI y 52 en los hogares Mis Primeros Amiguitos, Ositos del Ocal y Esperanza.'],
+ [1,'1.3 Nutrición','416','madres','Talleres para gestantes y lactantes','27 talleres sobre lactancia, primeros auxilios, estimulación temprana y hábitos saludables.'],
+ [1,'1.3 Nutrición','124','personas','Semana de la Lactancia Materna','Celebración del 3 al 6 de agosto, con sala de lactancia en funcionamiento y articulación con el Banco de Leche de Zipaquirá.'],
+ [1,'1.2 Salud','2','jornadas','Vacunación nacional','Jornadas del Programa Ampliado de Inmunizaciones y seguimiento de casos en SIVIGILA y MANGO.'],
+ [1,'1.7 Protección de derechos','1.101','NNA','Prevención del abuso sexual infantil','33 espacios lúdico-pedagógicos y talleres con padres sobre rutas de atención.'],
+ [1,'1.1 Pautas de crianza','100','padres e hijos','Encuentros de crianza','Encuentros en los jardines Pan de Azúcar y Chitasuga y campaña digital de crianza respetuosa.'],
+ [1,'1.6 Participación y expresión','4.000','niñas y niños','Día de la Niñez','Celebración municipal y programa de matrogimnasia con 410 niños.'],
+ [1,'1.5 Identidad','32','familias','Atención a familias víctimas','Talleres de reparación integral, feria de servicios y apoyos nutricionales.'],
+ [2,'2.1 Familia y cuidadores','50','talleres','Convivencia y prevención del bullying','Talleres con estudiantes de las IED, 6 talleres para padres y primeros auxilios psicológicos para docentes.'],
+ [2,'Oferta cultural y deportiva','3.600','NNA','Escuelas de formación artística','76 escuelas del IMCTT, más escuelas deportivas del Inderten con 2.000 niños.'],
+ [2,'2.4 Educación','66','niños','Programa de bilingüismo','Niveles Kids 1 y 2 para niñas y niños de 6 a 11 años.'],
+ [2,'2.5 Identidad y diversidad','2','eventos','Manos Rojas y erradicación del trabajo infantil','Conmemoraciones con enfoque de derechos humanos y funcionamiento de la mesa JUME.'],
+ [2,'Oferta deportiva','1.251','participantes','Festivales deportivos','Festivales de rondas, escolares y baby en BMX, fútbol y patinaje.'],
+ [3,'3.1 Familia y cuidadores','13','escuelas','Escuelas de padres','Pautas de crianza, comunicación asertiva, límites y vínculos familiares en las instituciones educativas.'],
+ [3,'3.2 Salud y vida saludable','5','talleres','Manejo emocional y unión familiar','Herramientas para que las familias gestionen emociones y mejoren la comunicación.'],
+ [3,'3.9 Autoprotección','21','talleres','Prevención del consumo de SPA','15 talleres con estudiantes y 6 con padres: toma de decisiones, presión de pares y autocuidado.']
+];
+const POB=[
+ {g:'Primera infancia',e:'0 a 5 años',u:2200,b:1500,c:C.verde},
+ {g:'Infancia',e:'6 a 11 años',u:2400,b:1900,c:C.amarillo},
+ {g:'Adolescencia',e:'12 a 17 años',u:2400,b:1300,c:C.rojo}
+];
+const AT={nna:[['Día de la Niñez',4000],['Escuelas artísticas (IMCTT)',3600],['Escuelas deportivas (Inderten)',2000],['Ludoteca municipal',1286],['Festivales deportivos',1251],['Prevención del abuso sexual',1101],['Matrogimnasia',410],['CDI Tenjanito',79],['Bilingüismo',66],['Hogares comunitarios',52]],
+ fam:[['Cuidadores en la Ludoteca',1309],['Madres gestantes y lactantes',416],['Semana de la Lactancia',124],['Grupo de orientación en lactancia',120],['Padres en encuentros de crianza',100],['Familias víctimas con apoyo nutricional',32],['Familias con kit para el bebé',28]]};
+const DEP=[['Protección Social',23],['Desarrollo Educativo',19],['Comisaría de Familia',9],['Salud Pública',9],['Inderten',4],['Desarrollo Económico',2],['IMCTT',1],['Registraduría',1],['Emsertenjo',1]];
+const METAS=[['161','Alimentación escolar (PAE)','100 % de los estudiantes de las IED · 2.800 beneficiarios'],['250','Ludoteca Municipal','Funcionamiento al 100 % · 3.302 beneficiarios'],['252','Centros de Atención a la Primera Infancia','Funcionamiento y dotación · 235 beneficiarios'],['253','Prevención del embarazo adolescente','Campañas de proyecto de vida · 2.686 beneficiarios'],['268','Salud mental','Estrategia municipal · 6.230 beneficiarios']];
+
+Chart.register(ChartDataLabels);
+Chart.defaults.font.family="'Source Sans 3', system-ui, sans-serif";
+Chart.defaults.font.size=13;
+Chart.defaults.color=C.gris;
+Chart.defaults.plugins.legend.labels.usePointStyle=true;
+Chart.defaults.plugins.tooltip.backgroundColor='#033D1C';
+Chart.defaults.plugins.tooltip.padding=12;
+Chart.defaults.plugins.tooltip.titleFont={family:'Montserrat',weight:'700'};
+
+let filtro=0;
+
+/* Filtro y tarjetas de eje */
+const fe=document.getElementById('filtroEje');
+[{id:0,nombre:'Todos',c:'#9AA5AE'},...EJES].forEach(e=>{
+  const b=document.createElement('button');b.className='chip'+(e.id===0?' on':'');b.dataset.id=e.id;
+  b.innerHTML=`<span class="pt" style="background:${e.c}"></span>${e.nombre}`;
+  b.onclick=()=>setFiltro(e.id);fe.appendChild(b);});
+const ejesBox=document.getElementById('ejes');
+EJES.forEach(e=>{
+  const d=document.createElement('div');d.className='card eje reveal';d.dataset.id=e.id;
+  d.style.cssText=`--c:${e.c};--ct:${e.ct};--cbg:${e.cbg}`;
+  d.innerHTML=`<div class="top"><i class="fa-solid ${e.icono}"></i><div><b>${e.nombre}</b><small>${e.edad} · ${e.lineas} líneas · ${e.acciones} acciones</small></div></div>
+  <div class="fila"><span>Cumplimiento plan 2026</span><span class="pct">${fmt(e.cumpl,1)} %</span></div>
+  <div class="barra"><span data-w="${e.cumpl}"></span></div>
+  <div class="fila" style="margin-top:10px"><span>Acciones gestionadas</span><b>${e.gest}</b></div>
+  <div class="fila"><span>Aporte a la política</span><b>${fmt(e.aporte,1)} %</b></div>
+  <div class="fila"><span>Peso en la política</span><b>${fmt(e.peso,2)} %</b></div>`;
+  d.onclick=()=>setFiltro(filtro===e.id?0:e.id);ejesBox.appendChild(d);});
+
+/* Gráfico por eje */
+let modoEje='cumpl';
+const chEjes=new Chart(document.getElementById('chEjes'),{type:'bar',
+  data:{labels:EJES.map(e=>e.nombre).concat('Total'),datasets:[{data:[],backgroundColor:[C.verde,C.amarillo,C.rojo,C.tinta],borderRadius:10,maxBarThickness:90}]},
+  options:{maintainAspectRatio:false,layout:{padding:{top:28}},plugins:{legend:{display:false},
+    datalabels:{anchor:'end',align:'end',color:C.tinta,font:{family:'Montserrat',weight:'800',size:15},formatter:v=>fmt(v,1)+' %'},
+    tooltip:{callbacks:{label:c=>(modoEje==='cumpl'?' Cumplimiento: ':' Aporte: ')+fmt(c.raw,1)+' %'}}},
+    scales:{y:{display:false,beginAtZero:true,max:115},x:{grid:{display:false},ticks:{font:{weight:'600',size:14}}}}}});
+function pintarEjes(){
+  const v=modoEje==='cumpl'?EJES.map(e=>e.cumpl).concat(72.2):EJES.map(e=>e.aporte).concat(34.7);
+  chEjes.data.datasets[0].data=v;chEjes.options.scales.y.max=modoEje==='cumpl'?115:42;
+  document.getElementById('subEje').textContent=modoEje==='cumpl'?'Cumplimiento del plan de acción 2026 (%)':'Aporte a la implementación total de la política (%)';
+  chEjes.data.datasets[0].backgroundColor=[C.verde,C.amarillo,C.rojo,C.tinta].map((c,i)=>filtro&&i!==filtro-1?c+'40':c);
+  chEjes.update();}
+document.querySelectorAll('#segEje button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#segEje button').forEach(x=>x.classList.remove('on'));b.classList.add('on');modoEje=b.dataset.v;pintarEjes();});
+
+/* Medidor */
+new Chart(document.getElementById('chGauge'),{type:'doughnut',
+  data:{datasets:[{data:[72.2,27.8],backgroundColor:[C.verde,'#E6EEE8'],borderWidth:0,borderRadius:[8,0]}]},
+  options:{maintainAspectRatio:false,rotation:-90,circumference:180,cutout:'78%',plugins:{legend:{display:false},tooltip:{enabled:false},datalabels:{display:false}}}});
+
+/* Líneas */
+const chLineas=new Chart(document.getElementById('chLineas'),{type:'bar',data:{labels:[],datasets:[{data:[],backgroundColor:[],borderRadius:6,maxBarThickness:26}]},
+  options:{indexAxis:'y',maintainAspectRatio:false,layout:{padding:{right:56}},plugins:{legend:{display:false},
+    datalabels:{anchor:'end',align:'end',color:C.tinta,font:{weight:'700'},formatter:v=>fmt(v,v%1?1:0)+' %'},
+    tooltip:{callbacks:{title:c=>c[0].label,label:c=>' Cumplimiento: '+fmt(c.raw,1)+' %',afterLabel:c=>' '+chLineas.$det[c.dataIndex]}}},
+    scales:{x:{display:false,beginAtZero:true,max:110},y:{grid:{display:false},ticks:{font:{size:13.5,weight:'600'},color:C.tinta}}}}});
+function pintarLineas(){
+  const L=LINEAS.filter(l=>!filtro||l[0]===filtro);
+  chLineas.data.labels=L.map(l=>l[1]+' '+l[2]);chLineas.data.datasets[0].data=L.map(l=>l[3]);
+  chLineas.data.datasets[0].backgroundColor=L.map(l=>EJES[l[0]-1].c);chLineas.$det=L.map(l=>l[4]);
+  document.getElementById('boxLineas').style.height=Math.max(220,L.length*38+40)+'px';
+  document.getElementById('tLineas').textContent='Cumplimiento por línea estratégica'+(filtro?' · '+EJES[filtro-1].nombre:'');
+  chLineas.resize();chLineas.update();}
+
+/* Logros */
+const gl=document.getElementById('gridLogros'),q=document.getElementById('q');
+function pintarLogros(){
+  const t=q.value.trim().toLowerCase();
+  const L=LOGROS.filter(l=>(!filtro||l[0]===filtro)&&(!t||l.join(' ').toLowerCase().includes(t)));
+  gl.innerHTML=L.length?L.map(l=>{const e=EJES[l[0]-1];return `<article class="card logro" style="--ct:${e.ct};--cbg:${e.cbg}">
+    <span class="tag">${e.nombre}</span><div class="cifra">${l[2]}<small>${l[3]}</small></div><h4>${l[4]}</h4><p>${l[5]}</p><div class="linea"><i class="fa-solid fa-diagram-project"></i> ${l[1]}</div></article>`}).join(''):'<div class="vacio">No hay logros que coincidan con la búsqueda.</div>';}
+q.addEventListener('input',pintarLogros);
+
+function setFiltro(id){filtro=id;
+  document.querySelectorAll('#filtroEje .chip').forEach(c=>c.classList.toggle('on',+c.dataset.id===id));
+  document.querySelectorAll('.eje').forEach(c=>c.classList.toggle('sel',+c.dataset.id===id));
+  pintarEjes();pintarLineas();pintarLogros();}
+
+/* Población: anillos */
+const an=document.getElementById('anillos');
+POB.forEach((p,i)=>{const d=document.createElement('div');d.className='card reveal';
+  d.innerHTML=`<div class="anillo"><canvas id="an${i}" width="110" height="110"></canvas><div><div class="num">≈ ${fmt(p.b)}</div><b>${p.g}</b><p>${p.e} · ${Math.round(p.b/p.u*100)} % de ${fmt(p.u)} estimados</p></div></div>`;
+  an.appendChild(d);
+  new Chart(d.querySelector('canvas'),{type:'doughnut',data:{datasets:[{data:[p.b,p.u-p.b],backgroundColor:[p.c,'#EEF2EF'],borderWidth:0}]},
+    options:{responsive:false,cutout:'72%',plugins:{legend:{display:false},tooltip:{enabled:false},datalabels:{display:false}}},
+    plugins:[{id:'centro',afterDraw(ch){const {ctx,chartArea:a}=ch;ctx.save();ctx.font="800 18px Montserrat";ctx.fillStyle=C.tinta;ctx.textAlign='center';ctx.textBaseline='middle';
+      ctx.fillText(Math.round(p.b/p.u*100)+' %',(a.left+a.right)/2,(a.top+a.bottom)/2);ctx.restore();}}]});});
+
+new Chart(document.getElementById('chPob'),{type:'bar',
+  data:{labels:POB.map(p=>[p.g,'('+p.e+')']),datasets:[
+    {label:'Población estimada',data:POB.map(p=>p.u),backgroundColor:C.claro,borderRadius:8,maxBarThickness:60},
+    {label:'Beneficiarios estimados',data:POB.map(p=>p.b),backgroundColor:C.verde,borderRadius:8,maxBarThickness:60}]},
+  options:{maintainAspectRatio:false,layout:{padding:{top:24}},plugins:{legend:{position:'top',align:'start'},
+    datalabels:{anchor:'end',align:'end',color:C.tinta,font:{weight:'700'},formatter:v=>fmt(v)},
+    tooltip:{callbacks:{label:c=>' '+c.dataset.label+': '+fmt(c.raw)}}},
+    scales:{y:{display:false,beginAtZero:true,max:2900},x:{grid:{display:false},ticks:{font:{weight:'600'}}}}}});
+
+const chAt=new Chart(document.getElementById('chAt'),{type:'bar',data:{labels:[],datasets:[{data:[],backgroundColor:C.verde,borderRadius:6,maxBarThickness:22}]},
+  options:{indexAxis:'y',maintainAspectRatio:false,layout:{padding:{right:50}},plugins:{legend:{display:false},
+    datalabels:{anchor:'end',align:'end',color:C.tinta,font:{weight:'700'},formatter:v=>fmt(v)},tooltip:{callbacks:{label:c=>' '+fmt(c.raw)+' atendidos'}}},
+    scales:{x:{display:false,beginAtZero:true},y:{grid:{display:false},ticks:{color:C.tinta,font:{weight:'600'}}}}}});
+function pintarAt(m){const d=AT[m];chAt.data.labels=d.map(x=>x[0]);chAt.data.datasets[0].data=d.map(x=>x[1]);
+  chAt.data.datasets[0].backgroundColor=m==='nna'?C.verde:C.rojo;
+  document.getElementById('subAt').textContent=m==='nna'?'Niñas, niños y adolescentes atendidos':'Padres, madres, cuidadores y familias atendidos';chAt.update();}
+document.querySelectorAll('#segAt button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#segAt button').forEach(x=>x.classList.remove('on'));b.classList.add('on');pintarAt(b.dataset.v);});
+
+new Chart(document.getElementById('chDep'),{type:'bar',data:{labels:DEP.map(d=>d[0]),datasets:[{data:DEP.map(d=>d[1]),
+  backgroundColor:DEP.map((d,i)=>[C.verde,C.amarillo,C.rojo][i%3]),borderRadius:6,maxBarThickness:24}]},
+  options:{indexAxis:'y',maintainAspectRatio:false,layout:{padding:{right:36}},plugins:{legend:{display:false},
+    datalabels:{anchor:'end',align:'end',color:C.tinta,font:{weight:'700'}},tooltip:{callbacks:{label:c=>' '+c.raw+' actividades'}}},
+    scales:{x:{display:false,beginAtZero:true},y:{grid:{display:false},ticks:{color:C.tinta,font:{weight:'600'}}}}}});
+
+document.getElementById('metas').innerHTML=METAS.map(m=>`<div class="meta"><span class="cod">Meta ${m[0]}</span><div><b>${m[1]}</b><span>${m[2]}</span></div></div>`).join('');
+
+/* Contadores y animaciones al hacer scroll */
+function contar(el){const fin=+el.dataset.count,dec=+el.dataset.dec||0,pre=el.dataset.pre||'',suf=el.dataset.suf||'';const t0=performance.now(),dur=1300;
+  (function paso(t){const k=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-k,3);el.textContent=pre+fmt(fin*e,dec)+suf;if(k<1)requestAnimationFrame(paso);})(t0);}
+const io=new IntersectionObserver(es=>es.forEach(en=>{if(!en.isIntersecting)return;const el=en.target;el.classList.add('ver');
+  el.querySelectorAll('[data-count]').forEach(c=>{if(!c.dataset.ok){c.dataset.ok=1;contar(c)}});el.querySelectorAll('.barra span').forEach(s=>s.style.width=s.dataset.w+'%');io.unobserve(el);}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+function animarTodo(){document.querySelectorAll('[data-count]').forEach(el=>{if(!el.dataset.ok){el.dataset.ok=1;contar(el)}});document.querySelectorAll('.barra span').forEach(s=>s.style.width=s.dataset.w+'%');}
+setTimeout(animarTodo,2500);
+
+/* Menú activo */
+const secs=[...document.querySelectorAll('main section')];
+addEventListener('scroll',()=>{let cur=secs[0].id;secs.forEach(s=>{if(s.getBoundingClientRect().top<140)cur=s.id});
+  document.querySelectorAll('nav.menu a').forEach(a=>a.classList.toggle('activo',a.getAttribute('href')==='#'+cur));},{passive:true});
+
+setFiltro(0);pintarAt('nna');
+</script>
+</body>
+</html>
