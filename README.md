@@ -14,5 +14,5 @@ Tablero interactivo con el avance, los logros y la población beneficiada de la 
 ## Fuente
 Matriz de seguimiento de la política y su relación con el Plan de Desarrollo Territorial. Corte: octubre de 2026.
 
-## Escudo
-Para mostrar el escudo del municipio en el encabezado, agrega el archivo `assets/escudo-tenjo.png`.
+## Créditos
+Escudo de Tenjo: SajoR, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Escudo_de_Tenjo.svg), licencia [CC BY-SA 2.5](https://creativecommons.org/licenses/by-sa/2.5/).
