@@ -408,6 +408,8 @@ function vDependencias(v){
   $('#depDet').onclick=ev=>{const a=ev.target.closest('[data-act]');if(a)modalAct(ACT[+a.dataset.act])};
 }
 
+window.TABLERO={ACT,ACC,LIN,LN,EJES,TOTAL_ACC,ALL_ACC,G_CUMPL,G_APORTE,LOGROS,POB,AT,METAS,S,VIS,fmt,pct,estado,ejeDe,toast,setEje,modalAct,modalLinea};
+
 /* ======================= EVENTOS ======================= */
 filtroUI();
 addEventListener('hashchange',render);

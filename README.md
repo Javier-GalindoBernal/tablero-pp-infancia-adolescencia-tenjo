@@ -23,3 +23,7 @@ Matriz de seguimiento de la política y su relación con el Plan de Desarrollo T
 
 ## Créditos
 Escudo de Tenjo: SajoR, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Escudo_de_Tenjo.svg), licencia [CC BY-SA 2.5](https://creativecommons.org/licenses/by-sa/2.5/).
+
+## Asistente JUAICO
+
+El tablero incluye a **JUAICO**, un asistente que responde preguntas sobre la política (avance por curso de vida, línea y acción, población beneficiada, logros, dependencias y metas del Plan de Desarrollo). Calcula las respuestas en el navegador con los mismos datos del tablero y no envía información a servidores. Código en `js/juaico.js`.
