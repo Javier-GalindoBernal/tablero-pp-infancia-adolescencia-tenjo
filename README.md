@@ -27,3 +27,8 @@ Escudo de Tenjo: SajoR, [Wikimedia Commons](https://commons.wikimedia.org/wiki/F
 ## Asistente JUAICO
 
 El tablero incluye a **JUAICO**, un asistente que responde preguntas sobre la política (avance por curso de vida, línea y acción, población beneficiada, logros, dependencias y metas del Plan de Desarrollo). Calcula las respuestas en el navegador con los mismos datos del tablero y no envía información a servidores. Código en `js/juaico.js`.
+
+## Tema oscuro e informes PDF
+
+- **Tema claro u oscuro:** botón en el encabezado; la preferencia se recuerda en el navegador.
+- **Informes PDF:** página *Informes PDF* para descargar el informe de avance 2026 de toda la política o de un curso de vida, en versión ejecutiva o completa. El PDF se genera en el navegador (`js/informe.js`, jsPDF).
